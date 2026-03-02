@@ -1,0 +1,22 @@
+info:
+  name: Post Notes
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:3001/api/notes
+  body:
+    type: json
+    data: |-
+      {
+        "content": "New note from  client",
+        "important": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
