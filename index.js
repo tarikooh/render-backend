@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const app = express()
 
+app.use(express.static('dist'))
 app.use(express.json())
 app.use(cors())
 
@@ -117,6 +118,9 @@ app.post('/api/notes', (request, response) => {
 
 app.put('/api/notes/:id', (req, res) => {
     const id = req.params.id
+    if(!notes.find(n => n.id === id)){
+	return res.status(400).end("No Note with given id exists")
+    }
     notes = notes.map(note => note.id === id ? req.body : note)
     res.json(req.body)
 })
